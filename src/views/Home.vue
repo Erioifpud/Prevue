@@ -4,7 +4,7 @@
       <component-sidebar></component-sidebar>
     </el-aside>
     <el-main>
-      <component v-if="currentComponent" :is="currentComponent.instance" v-bind="props"></component>
+      <component v-if="currentComponent" :is="currentComponent.instance" v-bind="props">123</component>
       <template v-else>
         <div class="home__empty-tips">No component</div>
       </template>

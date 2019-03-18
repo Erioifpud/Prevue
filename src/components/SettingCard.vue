@@ -60,6 +60,8 @@ export default {
           return defaultVal || new Date()
         case Function:
           return defaultVal || (() => {})
+        case Object:
+          return defaultVal || {}
         default:
           return undefined
       }
@@ -67,7 +69,7 @@ export default {
   },
   computed: {
     settings () {
-      return Object.entries(this.data).map(pair => {
+      return Object.entries(this.data || {}).map(pair => {
         const [prop, val] = pair
         return {
           prop,
