@@ -3,7 +3,6 @@
     :default-active="activeIndex"
     class="el-menu-demo"
     mode="horizontal"
-    @select="handleSelect"
   >
     <el-menu-item>Prevue</el-menu-item>
     <el-menu-item v-for="r in routeInfos" :key="r.path" :index="r.path" :route="r.path">

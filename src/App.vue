@@ -16,18 +16,40 @@ export default {
   name: 'app',
   components: {
     Topbar
+  },
+  data () {
+    return {
+      components: []
+    }
+  },
+  methods: {
+
+  },
+  created () {
+    const component = require.context('@/components/preview', false, /\.vue$/)
+    const requireAll = context => context.keys().map(item => {
+      const instance = context(item).default
+      console.log(instance)
+      const path = instance.__file
+      const filename = path.slice(path.lastIndexOf('/') + 1, path.length)
+      const title = instance.name || filename
+      return {
+        key: Symbol(title),
+        title,
+        instance
+      }
+    })
+    this.$store.commit('setComponents', requireAll(component))
   }
 }
 </script>
 
-<style lang="scss">
+<style lang='scss'>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  /* margin-top: 60px; */
   height: 100%;
 }
 
@@ -40,7 +62,7 @@ body {
 .el-header,
 .el-footer {
   color: #333;
-  // line-height: 60px;
+  // line-height: 60px
 }
 
 .el-header {
@@ -49,12 +71,12 @@ body {
 
 .el-aside {
   color: #333;
-  // line-height: 200px;
+  // line-height: 200px
 }
 
 .el-main {
   color: #333;
-  // line-height: 160px;
+  // line-height: 160px
 }
 
 .el-container {
