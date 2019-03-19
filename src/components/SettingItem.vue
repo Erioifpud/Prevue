@@ -4,7 +4,7 @@
     <el-input-number v-else-if="type === 'Number'" :precision="2" v-model="form[title]"></el-input-number>
     <el-switch v-else-if="type === 'Boolean'" v-model="form[title]"></el-switch>
     <el-date-picker v-else-if="type === 'Date'" type="datetime" placeholder="选择日期时间" v-model="form[title]"></el-date-picker>
-    <obj-edit v-else-if="type === 'Object'"></obj-edit>
+    <obj-edit v-else-if="type === 'Object'" v-model="form[title]"></obj-edit>
     <el-tag v-else type="info">{{ type }} 暂不支持</el-tag>
   </el-form-item>
 </template>

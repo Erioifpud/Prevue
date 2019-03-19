@@ -49,19 +49,20 @@ export default {
   methods: {
     ...mapMutations(['setProps']),
     initializeVal ({ type, default: defaultVal }) {
+      const val = typeof defaultVal === 'function' ? defaultVal() : defaultVal
       switch (type) {
         case String:
-          return defaultVal || ''
+          return val || ''
         case Number:
-          return defaultVal || 0
+          return val || 0
         case Boolean:
-          return defaultVal || false
+          return val || false
         case Date:
-          return defaultVal || new Date()
+          return val || new Date()
         case Function:
-          return defaultVal || (() => {})
+          return val || (() => {})
         case Object:
-          return defaultVal || {}
+          return val || {}
         default:
           return undefined
       }

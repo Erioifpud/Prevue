@@ -18,7 +18,15 @@ export default {
     num: {
       type: Number
     },
-    obj: Object,
+    obj: {
+      type: Object,
+      default () {
+        return {
+          name: 'abcd',
+          age: 1234
+        }
+      }
+    },
     bool: Boolean,
     func: Function,
     sym: Symbol,
