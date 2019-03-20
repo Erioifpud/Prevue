@@ -4,7 +4,14 @@
       <component-sidebar></component-sidebar>
     </el-aside>
     <el-main>
-      <component v-if="currentComponent" :is="currentComponent.instance" v-bind="props">123</component>
+      <component v-if="currentComponent" :is="instance" v-bind="props">
+        <!-- <span v-for="(slot, k) in Object.entries(previewSlots || {})">
+          <template v-if="typeof slot[1] === 'string'" v-slot="slot[0]">
+            123
+          </template>
+        </span> -->
+        <template></template>
+      </component>
       <template v-else>
         <div class="home__empty-tips">No component</div>
       </template>
@@ -28,7 +35,13 @@ export default {
   },
   computed: {
     ...mapGetters(['currentComponent']),
-    ...mapState(['props'])
+    ...mapState(['props']),
+    instance () {
+      return this.currentComponent.instance
+    },
+    previewSlots () {
+      return this.instance.computed && this.instance.computed.previewSlots.call(this)
+    }
   }
 }
 </script>
