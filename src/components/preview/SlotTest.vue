@@ -16,8 +16,8 @@ export default {
   computed: {
     previewSlots () {
       return {
-        // default: 123,
-        another: <button>btn</button>
+        default: '123',
+        another: 'abc'
       }
     }
   }

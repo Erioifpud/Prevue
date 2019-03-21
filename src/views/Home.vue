@@ -4,13 +4,13 @@
       <component-sidebar></component-sidebar>
     </el-aside>
     <el-main>
-      <component v-if="currentComponent" :is="instance" v-bind="props">
-        <!-- <span v-for="(slot, k) in Object.entries(previewSlots || {})">
-          <template v-if="typeof slot[1] === 'string'" v-slot="slot[0]">
-            123
+      <component ref="component" v-if="currentComponent" :is="instance" v-bind="props">
+        <template v-for="slot in Object.entries(previewSlots || {})" v-slot:[slot[0]]>
+          <!-- 暂时只支持string类型的slot内容 -->
+          <template v-if="typeof slot[1] === 'string'">
+            {{ slot[1] }}
           </template>
-        </span> -->
-        <template></template>
+        </template>
       </component>
       <template v-else>
         <div class="home__empty-tips">No component</div>
@@ -43,6 +43,20 @@ export default {
       return this.instance.computed && this.instance.computed.previewSlots.call(this)
     }
   }
+  // watch: {
+  //   currentComponent (newVal) {
+  //     this.$nextTick(() => {
+  //       const component = this.$refs.component
+  //       if (this.previewSlots && component) {
+  //         for (const [name, content] of Object.entries(this.previewSlots)) {
+  //           if (typeof content !== 'string') {
+  //             component.$slots[name] = [content]
+  //           }
+  //         }
+  //       }
+  //     })
+  //   }
+  // }
 }
 </script>
 
