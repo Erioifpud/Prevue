@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="title" :required="options.required" class="setting-item">
+  <el-form-item :label="title" :required="options.required" class="prop-item">
     <el-input v-if="type === 'String'" v-model="form[title]"></el-input>
     <el-input-number v-else-if="type === 'Number'" :precision="2" v-model="form[title]"></el-input-number>
     <el-switch v-else-if="type === 'Boolean'" v-model="form[title]"></el-switch>
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.setting-item {
+.prop-item {
   &__data {
     display: block;
   }

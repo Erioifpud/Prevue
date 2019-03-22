@@ -30,7 +30,6 @@ export default {
     const requireAll = context => context.keys().map(item => {
       const instance = context(item).default
       console.log(instance)
-      console.log(instance.computed && instance.computed.previewSlots.call(this))
       const path = instance.__file
       const filename = path.slice(path.lastIndexOf('/') + 1, path.length)
       const title = instance.name || filename

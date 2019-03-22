@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     current: undefined,
     components: [],
-    props: {}
+    props: {},
+    slots: {}
   },
   mutations: {
     setComponents (state, components) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     setProps (state, props) {
       state.props = props
+    },
+    setSlots (state, slots) {
+      state.slots = slots
     }
   },
   getters: {

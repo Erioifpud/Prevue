@@ -5,8 +5,7 @@
     </el-aside>
     <el-main>
       <component ref="component" v-if="currentComponent" :is="instance" v-bind="props">
-        <template v-for="slot in Object.entries(previewSlots || {})" v-slot:[slot[0]]>
-          <!-- 暂时只支持string类型的slot内容 -->
+        <template v-for="slot in Object.entries(slots || {})" v-slot:[slot[0]]>
           <template v-if="typeof slot[1] === 'string'">
             {{ slot[1] }}
           </template>
@@ -35,13 +34,13 @@ export default {
   },
   computed: {
     ...mapGetters(['currentComponent']),
-    ...mapState(['props']),
+    ...mapState(['props', 'slots']),
     instance () {
       return this.currentComponent.instance
-    },
-    previewSlots () {
-      return this.instance.computed && this.instance.computed.previewSlots.call(this)
     }
+    // previewSlots () {
+    //   return this.instance.computed && this.instance.computed.previewSlots.call(this)
+    // }
   }
   // watch: {
   //   currentComponent (newVal) {

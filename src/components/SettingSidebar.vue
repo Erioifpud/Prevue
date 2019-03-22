@@ -1,16 +1,19 @@
 <template>
   <el-row class="prop-sidebar">
-    <setting-card title="Props" v-if="currentInstance" :data="currentInstance.props"></setting-card>
+    <prop-card title="Props" v-if="currentInstance && currentInstance.props" :data="currentInstance.props"></prop-card>
+    <slot-card title="Slots" v-if="currentInstance && currentInstance.previewSlots" :data="currentInstance.previewSlots"></slot-card>
   </el-row>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import SettingCard from '@/components/SettingCard.vue'
+import PropCard from '@/components/PropCard.vue'
+import SlotCard from '@/components/SlotCard.vue'
 
 export default {
   components: {
-    SettingCard
+    PropCard,
+    SlotCard
   },
   computed: {
     ...mapGetters(['currentComponent']),

@@ -23,6 +23,7 @@ export default {
   methods: {
     ...mapMutations(['setCurrent']),
     handleSelect (index, arr, vm) {
+      this.$eventBus.$emit('componentChanged', 123)
       this.setCurrent(vm.$vnode.key)
     }
   }

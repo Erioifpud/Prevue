@@ -9,13 +9,13 @@
     </div>
     <template v-else>
       <el-form>
-        <setting-item v-for="setting in settings"
+        <prop-item v-for="setting in settings"
           :key="setting.prop"
           :title="setting.prop"
           :type="setting.type"
           :options="setting.options"
           :form="form"
-        ></setting-item>
+        ></prop-item>
       </el-form>
     </template>
   </el-card>
@@ -23,11 +23,11 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import SettingItem from '@/components/SettingItem'
+import PropItem from '@/components/PropItem'
 
 export default {
   components: {
-    SettingItem
+    PropItem
   },
   data () {
     return {
@@ -66,6 +66,14 @@ export default {
         default:
           return undefined
       }
+    },
+    initializeForm () {
+      this.form = {}
+      for (const setting of this.settings) {
+        const { prop, options } = setting
+        // this.form[prop] = this.initializeVal(options)
+        this.$set(this.form, prop, this.initializeVal(options))
+      }
     }
   },
   computed: {
@@ -89,11 +97,12 @@ export default {
     }
   },
   mounted () {
-    for (const setting of this.settings) {
-      const { prop, options } = setting
-      // this.form[prop] = this.initializeVal(options)
-      this.$set(this.form, prop, this.initializeVal(options))
-    }
+    this.initializeForm()
+    this.$eventBus.$on('componentChanged', (val) => {
+      this.$nextTick(() => {
+        this.initializeForm()
+      })
+    })
   }
 }
 </script>
