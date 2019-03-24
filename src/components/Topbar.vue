@@ -8,10 +8,15 @@
     <el-menu-item v-for="r in routeInfos" :key="r.path" :index="r.path" :route="r.path">
       {{ r.title }}
     </el-menu-item>
+    <el-menu-item>
+      显示设置栏
+      <el-switch :value="showSettingBar" @change="setSettingBarState">123</el-switch>
+    </el-menu-item>
   </el-menu>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -19,6 +24,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['showSettingBar']),
     routeInfos () {
       return this.$router.options.routes.map(r => {
         const title = r.meta && r.meta.title
@@ -28,9 +34,18 @@ export default {
         }
       })
     }
+  },
+  methods: {
+    ...mapMutations(['setSettingBarState'])
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.topbar {
+  &__spacer {
+    display: inline-block;
+    flex-grow: 10;
+  }
+}
 </style>

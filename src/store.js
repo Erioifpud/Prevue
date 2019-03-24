@@ -8,7 +8,8 @@ export default new Vuex.Store({
     current: undefined,
     components: [],
     props: {},
-    slots: {}
+    slots: {},
+    showSettingBar: true
   },
   mutations: {
     setComponents (state, components) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setSlots (state, slots) {
       state.slots = slots
+    },
+    setSettingBarState (state, status) {
+      state.showSettingBar = status
     }
   },
   getters: {

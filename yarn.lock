@@ -8243,6 +8243,11 @@ vue-cli-plugin-element@^1.0.1:
   resolved "http://registry.npm.taobao.org/vue-cli-plugin-element/download/vue-cli-plugin-element-1.0.1.tgz#34e58fb65b36cf59afaf14f503288e5e578b1554"
   integrity sha1-NOWPtls2z1mvrxT1AyiOXleLFVQ=
 
+vue-directive-touch@^1.0.28:
+  version "1.0.28"
+  resolved "http://registry.npm.taobao.org/vue-directive-touch/download/vue-directive-touch-1.0.28.tgz#973e48344ed30d0a7fcbc8e5ce93643293c81431"
+  integrity sha1-lz5INE7TDQp/y8jlzpNkMpPIFDE=
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "http://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"

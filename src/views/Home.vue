@@ -1,6 +1,6 @@
 <template>
   <el-container class="home">
-    <el-aside>
+    <el-aside width="200px">
       <component-sidebar></component-sidebar>
     </el-aside>
     <el-main>
@@ -15,7 +15,7 @@
         <div class="home__empty-tips">No component</div>
       </template>
     </el-main>
-    <el-aside>
+    <el-aside v-if="showSettingBar">
       <setting-sidebar></setting-sidebar>
     </el-aside>
   </el-container>
@@ -32,9 +32,14 @@ export default {
     ComponentSidebar,
     SettingSidebar
   },
+  data () {
+    return {
+      showSetting: true
+    }
+  },
   computed: {
     ...mapGetters(['currentComponent']),
-    ...mapState(['props', 'slots']),
+    ...mapState(['props', 'slots', 'showSettingBar']),
     instance () {
       return this.currentComponent.instance
     }
