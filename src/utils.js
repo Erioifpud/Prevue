@@ -25,7 +25,6 @@ export const instantDebounce = (fn, t) => {
       fn.apply(this, args)
     }
     timer = setTimeout(() => {
-      console.log(111);
       timer = null
     }, delay)
   }

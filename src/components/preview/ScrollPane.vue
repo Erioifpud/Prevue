@@ -1,9 +1,12 @@
 <template>
   <div class="scroll-pane" v-scroll="handleScroll" v-touch:up="nextPage" v-touch:down="prevPage">
     <div class="scroll-pane__wrapper" :style="translateY">
-      <div class="scroll-pane__item scroll-pane__item--red">1</div>
-      <div class="scroll-pane__item scroll-pane__item--yellow">2</div>
-      <div class="scroll-pane__item scroll-pane__item--blue">3</div>
+      <div class="scroll-pane__item" v-for="(page, k) in pages" :key="k">
+        <template v-if="typeof page === 'string'">{{ page }}</template>
+        <template v-else>
+          <component :is="page"></component>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +31,7 @@ export default {
   },
   methods: {
     nextPage () {
-      const count = this.count // || getChildrenCount
+      const count = this.count || (this.pages && this.pages.length) || 0
       if (!count) {
         return
       }
@@ -39,7 +42,7 @@ export default {
       }
     },
     prevPage () {
-      const count = this.count // || getChildrenCount
+      const count = this.count || (this.pages && this.pages.length) || 0
       if (!count) {
         return
       }
@@ -52,8 +55,10 @@ export default {
   },
   props: {
     count: {
-      type: Number,
-      default: 3
+      type: Number
+    },
+    pages: {
+      type: Array
     }
   },
   created () {
@@ -77,8 +82,6 @@ export default {
     display: flex;
     height: 100%;
     flex-direction: column;
-
-
     transition: transform 0.3s ease-in-out;
   }
 
